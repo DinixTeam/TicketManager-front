@@ -11,9 +11,9 @@ export const Form = styled.div`
     border-radius: 20px;
     margin: auto;
     padding: 10px;
-    margin-top: 15%;
+    margin-top: 10%;
     color: white;
-
+    margin-bottom: 10%;
 `;
 
 export const Image = styled.img`
@@ -39,13 +39,12 @@ export const Button = styled.div`
 export const Input = styled.div`
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
-    color: white;
+    margin-bottom: 15px;
     
     h2 {
         font-size: 12px;
         margin-left: 10px;
-        margin-bottom: 1px;
+        margin-bottom: 3px;
         font-family: 'Quicksand', 'Poppins',sans-serif;
     }
     input { 
@@ -54,6 +53,15 @@ export const Input = styled.div`
         height: 45px;
         width: 20vw;
         padding: 10px;
+        border: 1px solid #0E1E5B;
+        color: white;
+    }
+    select {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #0E1E5B;
+        border-radius: 5px;
+        height: 45px;
+        width: 20vw;
+        padding: 20px;
         border: 1px solid #0E1E5B;
         color: white;
     }
