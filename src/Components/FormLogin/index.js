@@ -37,6 +37,7 @@ const FormLogin = () => {
                 console.log(getId())
                 //loga();
                 history.push('/home');
+                window.location.reload()
             })
             .catch((err) => {
                 console.log(err.response)

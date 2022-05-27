@@ -9,6 +9,8 @@ export const Container = styled.div`
     height: 120px;
     margin-top: 20px;
     justify-content: space-between;
+    padding: 20px;
+    cursor: pointer;
 
     h1{
         color: white;

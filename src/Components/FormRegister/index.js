@@ -50,6 +50,7 @@ const FormRegister = () => {
                 console.log(res)
                 console.log('go')
                 history.push('/');
+                window.location.reload()
             })
             .catch((err) => {
                 console.log(err.response)

@@ -7,7 +7,7 @@ import AddEvento from "./Pages/AddEvento";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 
-const R = () => {
+const Routes = () => {
   
   
 //   function PrivateRoute({isPrivate,  ...rest}){
@@ -26,14 +26,14 @@ const R = () => {
     return (
       <Router>
       <Switch>
-          <Route exact path="/" component={Login} /> 
-         <Route path={"/register"} component={Cadastro} />
-         <Route path={"/home"} component={Home} />
-         <Route path={"/addevento"} component={AddEvento} />
+        <Route exact path="/" component={Login} /> 
+         <Route path="/register" component={Cadastro} />
+         <Route path="/home" component={Home} />
+         <Route path="/addevento" component={AddEvento} />
         </Switch>
       </Router>
 
     );
   };
   
-  export default R;
+  export default Routes;
