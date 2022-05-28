@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useNavigate } from "react-router-dom";
 import { getId, getToken } from "../../Services/auth";
 import http from "../../Services/httpRequest";
 import { Container, Input } from "./style";
@@ -8,7 +8,7 @@ import swal from 'sweetalert';
 
 const FormAddEvento = () => {
 
-    const history = useHistory();
+    const history = useNavigate();
 
     const [timeCasa, setTimeCasa] = useState('');
     const [timeFora, setTimeFora] = useState('');
@@ -71,7 +71,7 @@ const FormAddEvento = () => {
             .then((res) => {
                 console.log(res)
                 console.log('go')
-                history.push('/home');
+                history('/home');
                 window.location.reload()
             })
             .catch((err) => {

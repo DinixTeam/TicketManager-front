@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useNavigate } from "react-router-dom";
 import http from "../../Services/httpRequest";
 import Eventos from "../Eventos";
 import { Container } from "./style";
@@ -7,10 +7,10 @@ import { Container } from "./style";
 const HomeEvento = () => {
 
     const [eventos, setEventos] = useState([]);
-    const history = useHistory();
+    const history = useNavigate();
 
     const linkAddEvento = () => {
-        history.push('/addevento');
+        history('/addevento');
         window.location.reload();
     }
 

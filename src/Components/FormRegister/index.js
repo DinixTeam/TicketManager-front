@@ -3,7 +3,7 @@ import { Button, Card, Container, Form, Image, Input } from "./style";
 import logo from "../../Assets/logo.png";
 import http from "../../Services/httpRequest";
 import { getId, idUser, login } from "../../Services/auth";
-import { useHistory } from "react-router-dom";
+import { useHistory, useNavigate } from "react-router-dom";
 //import { useHistory } from "react-router-dom";
 
 const FormRegister = () => {
@@ -23,10 +23,10 @@ const FormRegister = () => {
 
    // var { loga, auth, desloga }   = useContext(Context);
 
-   const history = useHistory();
+   const history = useNavigate();
 
     const linkCadastro = () => {
-        history.push('/');
+        history('/');
     }
     
     
@@ -49,7 +49,7 @@ const FormRegister = () => {
             .then((res) => {
                 console.log(res)
                 console.log('go')
-                history.push('/');
+                history('/');
                 window.location.reload()
             })
             .catch((err) => {

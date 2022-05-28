@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../../Context/contextAPI.js";
 import { Container, Image, User } from "./style";
 
 const TopBar = () => {
 
-    // const { desloga } = useContext(Context);
+     const { desloga } = useContext(Context);
 
     // const [medico, setMedico] = useState([]);
 
@@ -20,7 +21,7 @@ const TopBar = () => {
             
             <div style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'row'}}> 
             <h2> opaaa </h2>
-                <User >
+                <User onClick={desloga}>
                     x
                 </User>
             </div>

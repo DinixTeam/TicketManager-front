@@ -1,6 +1,7 @@
 import React from "react";
+import { AuthPorvider } from "./Context/contextAPI.js";
+import R from "./Routes.js";
 
-import Routes from "./Routes";
 import GlobalStyle from "./style/StyleGlobal";
 
 
@@ -8,8 +9,10 @@ const App = () => {
   
   return (
     <div>
+       <AuthPorvider>
         <GlobalStyle />
-        <Routes />
+        <R />
+      </AuthPorvider>
     </div>
   );
 };

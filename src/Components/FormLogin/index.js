@@ -1,20 +1,20 @@
 import React, { useContext, useState } from "react";
 import { Button, Card, Container, Form, Image, Input } from "./style";
 import logo from "../../Assets/logo.png";
-import { useHistory } from "react-router-dom";
 import http from "../../Services/httpRequest";
-import { getId, idUser, login } from "../../Services/auth";
-//import { useHistory } from "react-router-dom";
+import { getId, idUser, login, logout } from "../../Services/auth";
+import { Context } from "../../Context/contextAPI.js";
+import { useNavigate } from "react-router-dom";
 
 const FormLogin = () => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-   // var { loga, auth, desloga }   = useContext(Context);
+    var { loga, auth, desloga }   = useContext(Context);
 
-   const history = useHistory();
+   const history = useNavigate();
 
     const linkCadastro = () => {
-        history.push('/register');
+        history('/register');
     }
     
     
@@ -28,16 +28,16 @@ const FormLogin = () => {
             http
             .post('/login', body)
             .then((res) => {
-               // logout()
+                logout()
                 console.log(res)
                 console.log('go')
                 login(res.data.token);
                 idUser(res.data._id);
                 console.log(res.data._id);
                 console.log(getId())
-                //loga();
-                history.push('/home');
-                window.location.reload()
+                loga();
+                history('/home');
+                window.location.reload();
             })
             .catch((err) => {
                 console.log(err.response)
