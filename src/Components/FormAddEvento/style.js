@@ -8,6 +8,17 @@ export const Container = styled.div`
     h1{
         color: white;
     }
+    button { 
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 15%;
+        height: 40px;
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: #70448B;
+        color: white;
+        font-weight: bold;
+    }
 `;
 
 export const Input = styled.div`

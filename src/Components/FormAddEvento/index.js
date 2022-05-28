@@ -1,8 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory, useNavigate } from "react-router-dom";
+import { getId, getToken } from "../../Services/auth";
+import http from "../../Services/httpRequest";
 import { Container, Input } from "./style";
+import moment from 'moment';
+import swal from 'sweetalert';
 
 const FormAddEvento = () => {
 
+    const history = useNavigate();
+
+    const [timeCasa, setTimeCasa] = useState('');
+    const [timeFora, setTimeFora] = useState('');
+    const [date, setDate] = useState();
+    const [descricao, setDescricao] = useState('');
+    const [localName, setLocalName] = useState('');
+    const [localNumber, setLocalNumber] = useState(0);
+    const [localComplement, setLocalComplement] = useState('');
+    const [cep, setCep] = useState('');
+    const [rua, setRua] = useState('');
+    const [bairro, setBairro] = useState('');
+    const [estado, setEstado] = useState('');
+    const [pais, setPais] = useState('');
+    const [capacidadeN, setCapacidadeN] = useState(0);
+    const [valorN, setValorN] = useState(0);
+    const [capacidadeS, setCapacidadeS] = useState(0);
+    const [valorS, setValorS] = useState(0);
+    const [capacidadeL, setCapacidadeL] = useState(0);
+    const [valorL, setValorL] = useState(0);
+    const [capacidadeO, setCapacidadeO] = useState(0);
+    const [valorO, setValorO] = useState(0);
+    const [capacidadeC, setCapacidadeC] = useState(0);
+    const [valorC, setValorC] = useState(0);
+
+
+
+    const RegisterEvento = () => {
+
+        const config = {
+            headers: { Authorization: `Bearer ${getToken()}` }
+          };
+        const body = {
+            time1: timeCasa,
+            time2: timeFora,
+            data: date,
+            descricao: descricao,
+            localName: localName,
+            localNumber: localNumber,
+            localComplement: localComplement,
+            cep: cep,
+            rua: rua,
+            bairro: bairro,
+            estado: estado,
+            pais: pais,
+            capacidadeN: capacidadeN,
+            valorN: valorN,
+            capacidadeS: capacidadeS,
+            valorS: valorS,
+            capacidadeL: capacidadeL,
+            valorL: valorL,
+            capacidadeO: capacidadeO,
+            valorO: valorO,
+            capacidadeC: capacidadeC,
+            valorC: valorC,
+            userID: getId(),
+        }
+        console.log(body)
+            http
+            .post('/evento', body, config)
+            .then((res) => {
+                console.log(res)
+                console.log('go')
+                history('/home');
+                window.location.reload()
+            })
+            .catch((err) => {
+                console.log(err.response)
+                //swal(err.response.data.message);
+
+            })
+        
+    }
 
     return(
         <Container>
@@ -13,21 +91,21 @@ const FormAddEvento = () => {
             <Input style={{marginRight: '10px'}}>
              <h2>Time Casa</h2>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setTimeCasa(e.target.value)}
                     placeholder="Time Casa"
-                    type="email"
+                    type="text"
                     required
-                    //value={email}
+                    value={timeCasa}
                         />
                     </Input>
                     <Input>
              <h2>Time Fora</h2>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setTimeFora(e.target.value)}
                     placeholder="Time Fora"
-                    type="email"
+                    type="text"
                     required
-                    //value={email}
+                    value={timeFora}
                         />
                     </Input>
             </div>
@@ -35,21 +113,22 @@ const FormAddEvento = () => {
             <Input style={{marginRight: '10px'}}>
              <h2>Local</h2>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setLocalName(e.target.value)}
                     placeholder="Local"
-                    type="email"
+                    type="text"
                     required
-                    //value={email}
+                    value={localName}
                         />
                     </Input>
                     <Input>
              <h2>Data</h2>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setDate(e.target.value)}
                     placeholder="Data"
-                    type="email"
+                    type='date'
+                    value={date}
+                     max={moment().format("YYYY-MM-DD")}
                     required
-                    //value={email}
                         />
                     </Input>
             </div>
@@ -57,11 +136,11 @@ const FormAddEvento = () => {
             <Input style={{marginRight: '10px'}}>
              <h2>Horario</h2>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setDescricao(e.target.value)}
                     placeholder="Horario"
-                    type="email"
+                    type="text"
                     required
-                    //value={email}
+                    value={descricao}
                         />
                     </Input>
                     <Input>
@@ -76,122 +155,131 @@ const FormAddEvento = () => {
                     </Input>
             </div>
             <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px' }}>
-                <h3 style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginRight: '20px', color: 'white' }} > Assentos Norte</h3>
             <Input style={{marginRight: '20px'}}>
              <h2>Capacidade</h2>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setCapacidadeN(e.target.value)}
                     placeholder="Capacidade"
                     type="email"
                     required
-                    //value={email}
+                    value={capacidadeN}
                     style={{width: '100px'}}
                         />
                     </Input>
                     <Input>
              <h2>Valor</h2>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setValorN(e.target.value)}
                     placeholder="Valor"
                     type="email"
                     required
-                    //value={email}
+                    value={valorN}
                     style={{width: '100px'}}
                         />
                     </Input>
+                <h3 style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '20px', color: 'white' }} > Assentos Norte</h3>
             </div>
             <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px' }}>
-                <h3 style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginRight: '20px', color: 'white' }} > Assentos Sul</h3>
+               
             <Input style={{marginRight: '20px'}}>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setCapacidadeS(e.target.value)}
                     placeholder="Capacidade"
                     type="email"
                     required
-                    //value={email}
+                    value={capacidadeS}
                     style={{width: '100px'}}
                         />
                     </Input>
                     <Input>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setValorS(e.target.value)}
                     placeholder="Valor"
                     type="email"
                     required
-                    //value={email}
+                    value={valorS}
                     style={{width: '100px'}}
                         />
                     </Input>
+                    <h3 style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '20px', color: 'white' }} > Assentos Sul</h3>
             </div>
             <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px' }}>
-                <h3 style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginRight: '20px', color: 'white' }} > Assentos Leste</h3>
             <Input style={{marginRight: '20px'}}>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setCapacidadeL(e.target.value)}
                     placeholder="Capacidade"
                     type="email"
                     required
-                    //value={email}
+                    value={capacidadeL}
                     style={{width: '100px'}}
                         />
                     </Input>
                     <Input>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setValorL(e.target.value)}
                     placeholder="Valor"
                     type="email"
                     required
-                    //value={email}
+                    value={valorL}
                     style={{width: '100px'}}
                         />
                     </Input>
+                    
+                <h3 style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '20px', color: 'white' }} > Assentos Leste</h3>
             </div>
             <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px' }}>
-                <h3 style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginRight: '20px', color: 'white' }} > Assentos Oeste</h3>
+              
             <Input style={{marginRight: '20px'}}>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setCapacidadeO(e.target.value)}
                     placeholder="Capacidade"
                     type="email"
                     required
-                    //value={email}
+                    value={capacidadeO}
                     style={{width: '100px'}}
                         />
                     </Input>
                     <Input>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setValorO(e.target.value)}
                     placeholder="Valor"
                     type="email"
                     required
-                    //value={email}
+                    value={valorO}
                     style={{width: '100px'}}
                         />
                     </Input>
+                    <h3 style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '20px', color: 'white' }} > Assentos Oeste</h3>
             </div>
             <div style={{display: 'flex', flexDirection: 'row', marginTop: '20px' }}>
-                <h3 style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginRight: '20px', color: 'white' }} > Assentos Camarote</h3>
             <Input style={{marginRight: '20px'}}>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setCapacidadeC(e.target.value)}
                     placeholder="Capacidade"
                     type="email"
                     required
-                    //value={email}
+                    value={capacidadeC}
                     style={{width: '100px'}}
                         />
                     </Input>
                     <Input>
                 <input 
-                    //onChange={e => setEmail(e.target.value)}
+                    onChange={e => setValorC(e.target.value)}
                     placeholder="Valor"
                     type="email"
                     required
-                    //value={email}
+                    value={valorC}
                     style={{width: '100px'}}
                         />
                     </Input>
+                    
+                <h3 style={{display: 'flex', flexDirection: 'column',
+                 justifyContent: 'center', marginLeft: '20px', color: 'white' }} > Assentos Camarote</h3>
             </div>
+
+            <button onClick={RegisterEvento}>
+                Adicionar Evento
+            </button>
             
         </Container>
     )

@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../../Context/contextAPI.js";
 import { Container, Image, User } from "./style";
-import add from "../../Assets/add_icon.png";
-import exit from "../../Assets/exit_icon.png";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 const TopBar = () => {
 
-    // const { desloga } = useContext(Context);
+    const { desloga } = useContext(Context);
 
     // const [medico, setMedico] = useState([]);
 
@@ -19,16 +19,11 @@ const TopBar = () => {
 
     return (
         <Container>
-            
-            <div style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'row'}}> 
-            <h2 style={{color: "black", marginRight:'1150px', marginLeft:'0px'}}> opaaa </h2>
-                <User>
-                    <Image backgroundImg={add}/>
 
-                </User>
-                <User >
-                    <Image backgroundImg={exit}/>
-
+            <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
+                <h2 style={{ color: "white", marginRight: '1200px', marginLeft: '0px' }}> opaaa </h2>
+                <User onClick={desloga}>
+                    <FontAwesomeIcon icon={faSignOutAlt} />
                 </User>
             </div>
 

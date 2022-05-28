@@ -72,13 +72,14 @@ export const Input = styled.div`
         height: 45px;
         width: 20vw;
         padding: 10px;
+        margin-left: 10px;
         border: 1px solid #0E1E5B;
         color: white;
     }
 `;
 
 export const Linha = styled.div`
-    width: '20vw';
+    width: 15vh;
     display: flex;
     flex-direction: row;
     justify-content: 'space-between';

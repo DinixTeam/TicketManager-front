@@ -20,3 +20,8 @@ export const isAuthenticated = () => {
   export  const  getId  =  ()  =>  {
     return localStorage.getItem ( idkey ) ;
   }
+
+  export  const  logout  =  ()  =>  {
+    localStorage.removeItem ( TOKENKEY ) ;
+    localStorage.removeItem ( idkey ) ;
+  } 
