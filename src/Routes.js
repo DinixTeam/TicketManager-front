@@ -3,6 +3,7 @@ import Login from "./Pages/Login";
 import Cadastro from "./Pages/Cadastro";
 import AddEvento from "./Pages/AddEvento";
 import BuyIngresso from "./Pages/BuyIngresso";
+import Ingressos from "./Pages/Ingrecos";
 
 import { BrowserRouter as Router, Switch, Route, Navigate, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
@@ -38,6 +39,9 @@ const R = () => {
          }
                   {
            loading ? null : <Route path="/buy" element={!auth ? <Navigate to="/" />: <BuyIngresso /> } />
+         }
+          {
+           loading ? null : <Route path="/ingressos" element={!auth ? <Navigate to="/" />: <Ingressos /> } />
          }
         </Routes>
       </Router>
