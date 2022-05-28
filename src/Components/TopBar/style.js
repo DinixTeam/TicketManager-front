@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+    grid-area: TB;
     display: flex;
+    /* background-color: transparent; */
+    background-size: cover;
     place-items: center;
     justify-content: end;
     position: initial;
@@ -26,9 +29,9 @@ export const Container = styled.div`
 
 
 export const Image = styled.img`
-    width: 200px;
-    margin-top: 5px;
- 
+    width: 30px;
+    height: 30px;
+    background-image: URL(${(props) => props.backgroundImg});
 `;
 
 export const User = styled.div`

@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Container, Image, User } from "./style";
+import add from "../../Assets/add_icon.png";
+import exit from "../../Assets/exit_icon.png";
 
 const TopBar = () => {
 
@@ -19,9 +21,14 @@ const TopBar = () => {
         <Container>
             
             <div style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'row'}}> 
-            <h2> opaaa </h2>
+            <h2 style={{color: "black", marginRight:'1150px', marginLeft:'0px'}}> opaaa </h2>
+                <User>
+                    <Image backgroundImg={add}/>
+
+                </User>
                 <User >
-                    x
+                    <Image backgroundImg={exit}/>
+
                 </User>
             </div>
 
