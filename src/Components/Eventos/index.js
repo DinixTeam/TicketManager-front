@@ -9,8 +9,15 @@ import { getId, getToken } from "../../Services/auth";
 import http from "../../Services/httpRequest";
 import swal from "sweetalert";
 import Modal from "react-modal/lib/components/Modal";
+import { useNavigate } from "react-router-dom";
 
 const Eventos = ({data}) => {
+
+    const history = useNavigate();
+
+    const linkEvento = () =>{
+        history(`/buy/${data._id}`)
+    }
 
     const customStyles = {
         overlay: {
@@ -53,7 +60,7 @@ const Eventos = ({data}) => {
     }
 
     return(
-        <Container backgroundImg={bgImg}>
+        <Container backgroundImg={bgImg} onClick={linkEvento}>
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <h1>
                     {data.titulo}

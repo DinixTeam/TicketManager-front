@@ -17,8 +17,8 @@ export const Form = styled.div`
     opacity: 6;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin: auto;
-    padding: 20px;
-    //margin-top: 3%;
+    padding: 10px;
+    margin-top: 3%;
     color: white;
     
     

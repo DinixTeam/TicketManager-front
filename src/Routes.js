@@ -4,6 +4,7 @@ import Cadastro from "./Pages/Cadastro";
 import AddEvento from "./Pages/AddEvento";
 import BuyIngresso from "./Pages/BuyIngresso";
 import Ingressos from "./Pages/Ingrecos";
+import Pagar from "./Pages/Pagar";
 
 import { BrowserRouter as Router, Switch, Route, Navigate, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
@@ -11,10 +12,10 @@ import { Context } from "./Context/contextAPI.js";
 
 
 const R = () => {
-  let {auth, loading} = useContext(Context);
-  
+  let { auth, loading } = useContext(Context);
+
   // function PrivateRoute({isPrivate,  ...rest}){
-    
+
   //   console.log(auth);
   //   console.log(loading);
   //   if(loading){
@@ -26,8 +27,8 @@ const R = () => {
   //   return <Route {...rest} />
   // }
 
-    return (
-      <Router>
+  return (
+    <Router>
       <Routes>
         <Route exact path="/" element={<Login/>}/>
          <Route path='/register' element={<Cadastro />} />
@@ -38,15 +39,18 @@ const R = () => {
            loading ? null : <Route path="/addevento" element={!auth ?  <Navigate to="/" /> :  <AddEvento />} />
          }
                   {
-           loading ? null : <Route path="/buy" element={!auth ? <Navigate to="/" />: <BuyIngresso /> } />
+           loading ? null : <Route path="/buy/:idevento" element={!auth ? <Navigate to="/" />: <BuyIngresso /> } />
          }
           {
            loading ? null : <Route path="/ingressos" element={!auth ? <Navigate to="/" />: <Ingressos /> } />
          }
+          {
+          loading ? null : <Route path="/pay" element={!auth ? <Navigate to="/" /> : <Pagar />} />
+        }
         </Routes>
       </Router>
 
-    );
-  };
-  
-  export default R;
+  );
+};
+
+export default R;

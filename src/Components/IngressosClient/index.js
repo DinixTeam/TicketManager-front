@@ -10,21 +10,7 @@ const IngressosClient = () => {
             <Ingresso>
 
             </Ingresso>
-            <Ingresso>
-
-</Ingresso>
-<Ingresso>
-
-</Ingresso>
-<Ingresso>
-
-</Ingresso>
-<Ingresso>
-
-</Ingresso>
-<Ingresso>
-
-</Ingresso>
+           
         </Container>
        
     )
