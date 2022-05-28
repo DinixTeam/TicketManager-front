@@ -27,7 +27,7 @@ const HomeEvento = () => {
         <Container>
             {eventos.map((item, index) => {
                 return(
-                    <Eventos data={item}/>
+                    <Eventos data={item} key={index}/>
                 )
             })}
             <button onClick={linkAddEvento}>
