@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Form, Linha, ButtonAdd } from "./style";
-
+import { Form, Linha, ButtonAdd, ModalInfo, Input } from "./style";
+import moment from "moment";
+import Modal from "react-modal/lib/components/Modal";
 
 
 const Pagaringresso = () => {
@@ -31,5 +32,59 @@ const Pagaringresso = () => {
         </div>
     );
 }
+
+const WrapModal = ({ customStyles, openModal, setOpen, data }) => {
+
+    const [date, setDate] = useState('')
+
+    // const HandleSubmit = (e) => {
+
+    // const body = {
+    //     data: date,
+    //     userID: getId(),
+    //     eventoID: data._id,
+    // }
+    // const config = {
+    //     headers: { Authorization: `Bearer ${getToken()}` }
+    // };
+
+
+    //     console.log(body)
+    //     e.preventDefault();
+    //     if (body.date !== '') {
+    //         http
+    //             .put("/updateevento", body, config)
+    //             .then((result) => {
+    //                 setOpen(false)
+    //                 window.location.reload()
+    //             })
+    //             .catch((err) => {
+    //                 console.log(err);
+    //             });
+    //     } else {
+    //         swal("Preencha todos os dados!");
+    //     }
+    // };
+
+    return (
+        <Modal
+            style={customStyles}
+            isOpen={openModal}
+            onRequestClose={() => setOpen(false)}
+        >
+            <ModalInfo>
+                <h1> Detalhes do Pagamento </h1>
+                <Input>
+                    <h2>Data</h2>
+                    <h2>Forma de pagamento</h2>
+                </Input>
+                <button>
+                    Ok
+                </button>
+            </ModalInfo>
+
+        </Modal>
+    );
+};
 
 export default Pagaringresso;
