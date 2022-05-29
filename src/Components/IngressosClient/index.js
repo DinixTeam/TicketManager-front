@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getId } from "../../Services/auth";
 import http from "../../Services/httpRequest";
-import { Container, Ingresso, ButtonAdd } from "./style";
+import Ingresso from "../Ingresso";
+import { Container, ButtonAdd } from "./style";
 
 const IngressosClient = () => {
 
@@ -19,9 +20,7 @@ const IngressosClient = () => {
 
                  {ingresso.map((item, index) => {
                      return(
-                        <Ingresso>
-
-                        </Ingresso>
+                        <Ingresso data={item} key={index} />
                      )
                  })}
             <ButtonAdd style={{width:'250px', marginRight:'0px', marginLeft:'-25px'}}>

@@ -16,7 +16,7 @@ const Pagaringresso = () => {
     const [numero, setNumero] = useState('');
     const [titular, setTitular] = useState('');
     const [cpf, setCpf] = useState('');
-    const [data, setData] = useState('');
+    const [data, setData] = useState();
     const [boleto, setBoleto] = useState('false');
     const [qrcode, setQrCode] = useState('false');
     const [parcelas, setParcelas] = useState(1)
@@ -50,6 +50,7 @@ const Pagaringresso = () => {
                 tipoPagamentoNumber: 2,
                 boleto:boleto,
                 userID: getId(),
+                eventoID: evento._id,
                 ingressoID: idingresso,
                 parcelas: 1,
             }
@@ -60,8 +61,9 @@ const Pagaringresso = () => {
                 numero: numero,
                 titular: titular,
                 cpf: cpf,
-               // data: data,
+                data: data,
                 userID: getId(),
+                eventoID: evento._id,
                 ingressoID: idingresso,
                 parcelas: 4,
             }
@@ -71,6 +73,7 @@ const Pagaringresso = () => {
                 tipoPagamentoNumber: 3,
                 qrCode: qrcode,
                 userID: getId(),
+                eventoID: evento._id,
                 ingressoID: idingresso,
                 parcelas: 1,
             }
