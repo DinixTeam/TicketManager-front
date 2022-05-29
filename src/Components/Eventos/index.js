@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Input, ModalInfo } from "./style";
 import bgImg from "../../Assets/uefa.png";
 import moment from 'moment';
@@ -9,81 +9,131 @@ import { getId, getToken } from "../../Services/auth";
 import http from "../../Services/httpRequest";
 import swal from "sweetalert";
 import Modal from "react-modal/lib/components/Modal";
+import { useNavigate } from "react-router-dom";
 
-const Eventos = ({ data }) => {
+const Eventos = ({data}) => {
 
-  const customStyles = {
-    overlay: {
-      backgroundColor: "rgba(0,0,0,0.8)",
-    },
-    content: {
-      padding: "0",
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      color: "#000",
-      background: "#fff",
-    },
-  };
+    const [user, setUser] = useState([])
 
-  const [openModal, setOpen] = useState(false);
+    const history = useNavigate();
 
-  const deleteEvento = () => {
-
-    const config = {
-      headers: { Authorization: `Bearer ${getToken()}` }
-    };
-
-    const body = {
-      userID: getId(),
-      eventoID: data._id,
+    const linkEvento = () =>{
+        history(`/buy/${data._id}`)
     }
 
-    http.put('removeevento', body, config).then(
-      (res) => {
-        console.log(res);
-        window.location.reload()
-      }).catch((err) => {
-        console.log("Ocorreu algum erro");
-        console.log(err.response);
-      })
-  }
+    useEffect(() => { 
+        (async () => {
+          const response = await http.get(`/user/${getId()}`);
+          console.log(response.data);
+          setUser(response.data);
+        })();
+      }, []);
 
-  return (
-    <Container backgroundImg={bgImg}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <h1>
-          {data.titulo}
-        </h1>
-        <div>
-          <h2 style={{ color: 'white' }}>
-            {data.local.localName}
-          </h2>
-          <h2 style={{ fontSize: '10px', color: 'white' }}>{data.data}</h2>
-        </div>
-      </div>
-      <div style={{ diplay: 'flex', flexDirection: 'row' }}>
-        <div style={{
-          color: 'white', marginBottom: '10px',
-        }} onClick={deleteEvento}>
-          <FontAwesomeIcon icon={faTrash} />
-        </div>
-        <div style={{ color: 'white' }} onClick={e => setOpen(true)}>
-          <FontAwesomeIcon icon={faEdit} />
-        </div>
-      </div>
+    const customStyles = {
+        overlay: {
+          backgroundColor: "rgba(0,0,0,0.8)",
+        },
+        content: {
+          padding: "0",
+          top: "50%",
+          left: "50%",
+          right: "auto",
+          bottom: "auto",
+          marginRight: "-50%",
+          transform: "translate(-50%, -50%)",
+          color: "#000",
+          background: "#fff",
+        },
+      };
 
-      <WrapModal
-        customStyles={customStyles}
-        openModal={openModal}
-        data={data}
-        setOpen={setOpen}
-      />
-    </Container>
-  )
+      const [openModal, setOpen] = useState(false);
+
+    const deleteEvento = () => {
+
+        const config = {
+            headers: { Authorization: `Bearer ${getToken()}` }
+          };
+
+        const body = {
+            userID: getId(),
+            eventoID: data._id,
+        }
+
+        http.put('removeevento', body, config).then(
+            (res)=> {
+                console.log(res);
+                window.location.reload()
+        }).catch((err) => {
+            console.log("Ocorreu algum erro");
+            console.log(err.response);
+        })
+    }
+
+    return(
+        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+            {user.isOrganizador ? <Container backgroundImg={bgImg}>
+                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                    <h1>
+                            {data.titulo}
+                        </h1>
+                        <div>
+                        <h2 style={{color: 'white'}}>
+                            {data.local.localName}
+                        </h2>
+                        <h2 style={{fontSize: '10px', color: 'white'}}>{data.data}</h2>
+                        </div>
+                    </div>
+                        <div style={{diplay: 'flex', flexDirection: 'row'}}>
+                            <div style={{color: 'white', marginBottom: '10px',
+                            }} onClick={deleteEvento}>
+                                <FontAwesomeIcon icon={faTrash} />
+                            </div>
+                            <div style={{color: 'white'}} onClick={e => setOpen(true)}>
+                                <FontAwesomeIcon icon={faEdit} />
+                            </div>
+                        </div>
+
+                        <WrapModal
+                            customStyles={customStyles}
+                            openModal={openModal}
+                            data={data}
+                            setOpen={setOpen}
+                        />
+                </Container> : 
+                <Container backgroundImg={bgImg} onClick={linkEvento}>
+                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <h1>
+                        {data.titulo}
+                    </h1>
+                    <div>
+                    <h2 style={{color: 'white'}}>
+                        {data.local.localName}
+                    </h2>
+                    <h2 style={{fontSize: '10px', color: 'white'}}>{data.data}</h2>
+                    </div>
+                </div>
+                    {/* <div style={{diplay: 'flex', flexDirection: 'row'}}>
+                        <div style={{color: 'white', marginBottom: '10px',
+                        }} onClick={deleteEvento}>
+                            <FontAwesomeIcon icon={faTrash} />
+                        </div>
+                        <div style={{color: 'white'}} onClick={e => setOpen(true)}>
+                            <FontAwesomeIcon icon={faEdit} />
+                        </div>
+                    </div> */}
+
+                    <WrapModal
+                        customStyles={customStyles}
+                        openModal={openModal}
+                        data={data}
+                        setOpen={setOpen}
+                    />
+            </Container>
+            }
+        </div>
+     
+        
+    )
 }
 
 const WrapModal = ({ customStyles, openModal, setOpen, data }) => {

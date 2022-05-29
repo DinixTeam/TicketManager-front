@@ -3,6 +3,7 @@ import Login from "./Pages/Login";
 import Cadastro from "./Pages/Cadastro";
 import AddEvento from "./Pages/AddEvento";
 import BuyIngresso from "./Pages/BuyIngresso";
+import Ingressos from "./Pages/Ingrecos";
 import Pagar from "./Pages/Pagar";
 
 import { BrowserRouter as Router, Switch, Route, Navigate, Routes } from "react-router-dom";
@@ -29,22 +30,25 @@ const R = () => {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Login />} />
-        <Route path='/register' element={<Cadastro />} />
-        {
-          loading ? null : <Route path="/home" element={!auth ? <Navigate to="/" /> : <Home />} />
-        }
-        {
-          loading ? null : <Route path="/addevento" element={!auth ? <Navigate to="/" /> : <AddEvento />} />
-        }
-        {
-          loading ? null : <Route path="/buy" element={!auth ? <Navigate to="/" /> : <BuyIngresso />} />
-        }
-        {
+        <Route exact path="/" element={<Login/>}/>
+         <Route path='/register' element={<Cadastro />} />
+         {
+           loading ? null : <Route path="/home" element={!auth ? <Navigate to="/" />: <Home /> } />
+         }
+         {
+           loading ? null : <Route path="/addevento" element={!auth ?  <Navigate to="/" /> :  <AddEvento />} />
+         }
+                  {
+           loading ? null : <Route path="/buy/:idevento" element={!auth ? <Navigate to="/" />: <BuyIngresso /> } />
+         }
+          {
+           loading ? null : <Route path="/ingressos" element={!auth ? <Navigate to="/" />: <Ingressos /> } />
+         }
+          {
           loading ? null : <Route path="/pay" element={!auth ? <Navigate to="/" /> : <Pagar />} />
         }
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
 
   );
 };

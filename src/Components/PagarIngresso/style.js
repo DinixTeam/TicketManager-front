@@ -8,10 +8,8 @@ export const Form = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 40vw;
     /* width: 100%; */
-    min-height: 500px;
-    /* background: linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), #0E1E5B; */
+    /* min-height: 500px; */
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)), rgba(0, 8, 34, 0.6);
     border-radius: 20px;
     opacity: 6;
@@ -69,7 +67,7 @@ export const Input = styled.div`
     input { 
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #0E1E5B;
         border-radius: 5px;
-        height: 45px;
+        height: 35px;
         width: 20vw;
         padding: 10px;
         margin-left: 10px;

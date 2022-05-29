@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Grid = styled.div`
     background-image: URL(${(props) => props.backgroundImg});
-    overflow: hidden;
+    overflow: scroll;
     min-height: 100vh;
     background-size: cover;
     display: grid;

@@ -1,16 +1,44 @@
-import React, { useState } from "react";
-import { Form, Linha, ButtonAdd, ModalInfo, Input } from "./style";
-import moment from "moment";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal/lib/components/Modal";
+import { Form, Linha, ButtonAdd, ModalInfo, Input } from "./style";
+
 
 
 const Pagaringresso = () => {
     const [tiposingressos, setEstado] = useState('');
     const [qntdingressos, setQuantidade] = useState(0);
+    // const [ingresso, setIngress] = useState([])
+
+    // useEffect(() => { 
+    //     (async () => {
+    //       const response = await http.get(`/readoneingresso/${idevento}`);
+    //       console.log(response.data);
+    //       setIngress(response.data);
+    //     })();
+    //   }, []);
+
+
+    const customStyles = {
+        overlay: {
+            backgroundColor: "rgba(0,0,0,0.8)",
+        },
+        content: {
+            padding: "0",
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            color: "#000",
+            background: "#fff",
+        },
+    };
+
+    const [openModal, setOpen] = useState(false);
 
     return (
         <div>
-            <Form>
                 <h1>Miauuuuuu</h1>
                 <h1>Time1 x Time2</h1>
                 <h3 style={{ marginBottom: '-45px', marginLeft: '-80px' }}>tipo de Pagamento</h3>
@@ -22,13 +50,62 @@ const Pagaringresso = () => {
                     <option value="Cc">Cartão de Crédito</option>
                     <option value="Pix">Pix</option>
                 </select>
+                {tiposingressos === 'Cc' ?
+                <div>
+                    <Input>
+                        <h2>Numero de cartão</h2>
+                        <input
+                            type="text"
+                        />
+                    </Input>
+                    <Input>
+                        <h2>Nome do titular</h2>
+                        <input
+                            type="text"
+                        />
+                    </Input>
+                    <Input>
+                        <h2>Cpf</h2>
+                        <input
+                            type="text"
+                        />
+                    </Input>
+                    <Input>
+                        <h2>Data vencimento</h2>
+                        <input
+                            type="text"
+                        />
+                    </Input>
+                    <Input>
+                        <h2>Número de parcelas</h2>
+                        <input
+                            type="text"
+                        />
+                    </Input>
+                </div>
+                : null
+                }
                 <Linha>
                     <h3>valor Final {'$qntdingressos'}</h3>
                 </Linha>
-                <ButtonAdd>
+                {/* <ButtonAdd onClick={e => setOpen(true)}>
                     Pagar
-                </ButtonAdd>
-            </Form>
+                </ButtonAdd> */}
+                <Linha>
+                    <ButtonAdd style={{width:'190px', marginRight:'0px', marginLeft:'-80px'}}onClick={e => setOpen(true)}>
+                        Voltar
+                    </ButtonAdd>
+                    <ButtonAdd style={{width:'180px'}} onClick={e => setOpen(true)}>
+                        Pagar
+                    </ButtonAdd>
+                </Linha>
+
+            <WrapModal
+                customStyles={customStyles}
+                openModal={openModal}
+                //data={data}
+                setOpen={setOpen}
+            />
         </div>
     );
 }
@@ -66,25 +143,24 @@ const WrapModal = ({ customStyles, openModal, setOpen, data }) => {
     //     }
     // };
 
-    return (
-        <Modal
-            style={customStyles}
-            isOpen={openModal}
-            onRequestClose={() => setOpen(false)}
-        >
-            <ModalInfo>
-                <h1> Detalhes do Pagamento </h1>
-                <Input>
-                    <h2>Data</h2>
-                    <h2>Forma de pagamento</h2>
-                </Input>
-                <button>
-                    Ok
-                </button>
-            </ModalInfo>
+    const WrapModal = ({ customStyles, openModal, setOpen, data }) => {
+        return (
+            <Modal
+                style={customStyles}
+                isOpen={openModal}
+                onRequestClose={() => setOpen(false)}
+            >
+                <ModalInfo>
+                    <h1> Altere o dia do jogo </h1>
 
-        </Modal>
-    );
+                    <button >
+                        Salvar
+                    </button>
+                </ModalInfo>
+
+            </Modal>
+        );
+    };
 };
 
 export default Pagaringresso;
