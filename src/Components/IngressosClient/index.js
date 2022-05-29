@@ -13,7 +13,6 @@ const IngressosClient = () => {
             <ButtonAdd style={{width:'250px', marginRight:'0px', marginLeft:'-25px'}}>
                         Voltar
             </ButtonAdd>
-           
         </Container>
        
     )

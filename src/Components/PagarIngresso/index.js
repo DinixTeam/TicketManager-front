@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal/lib/components/Modal";
 import { Form, Linha, ButtonAdd, ModalInfo, Input } from "./style";
-
-
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import qrimg from '../../Assets/qrcode.jpg';
+import lineBoleto from '../../Assets/lineBoleto.jpg';
 
 const Pagaringresso = () => {
     const [tiposingressos, setEstado] = useState('');
@@ -39,20 +43,20 @@ const Pagaringresso = () => {
 
     return (
         <Form>
-            
-                <h1>Miauuuuuu</h1>
-                <h1>Time1 x Time2</h1>
-                <h3 style={{ marginBottom: '5px', marginLeft: '-80px' }}>tipo de Pagamento</h3>
-                <select style={{ width: '15vw', backgroundColor: '#929490', borderRadius: '15px', height: '30px', border: 'none', paddingLeft: '8px' }}
-                    name='sexos' value={tiposingressos} onChange={texto => setEstado(texto.target.value)
-                    }>
-                    <option value="">Selecione</option>
-                    <option value="Boleto">Boleto</option>
-                    <option value="Cc">Cartão de Crédito</option>
-                    <option value="Pix">Pix</option>
-                </select>
-                {tiposingressos === 'Cc' ?
-                <div style={{marginTop: '50px'}}>
+
+            <h1>Miauuuuuu</h1>
+            <h1>Time1 x Time2</h1>
+            <h3 style={{ marginBottom: '5px', marginLeft: '-80px' }}>tipo de Pagamento</h3>
+            <select style={{ width: '15vw', backgroundColor: '#929490', borderRadius: '15px', height: '30px', border: 'none', paddingLeft: '8px' }}
+                name='sexos' value={tiposingressos} onChange={texto => setEstado(texto.target.value)
+                }>
+                <option value="">Selecione</option>
+                <option value="Boleto">Boleto</option>
+                <option value="Cc">Cartão de Crédito</option>
+                <option value="Pix">Pix</option>
+            </select>
+            {tiposingressos === 'Cc' ?
+                <div style={{ marginTop: '50px' }}>
                     <Input>
                         <h2>Numero de cartão</h2>
                         <input
@@ -84,22 +88,30 @@ const Pagaringresso = () => {
                         />
                     </Input>
                 </div>
+                : tiposingressos === 'Pix' ?
+                    <div style={{ marginTop: '50px' }}>
+                        <img src={qrimg}></img>
+                    </div>
+                : tiposingressos === 'Boleto' ?
+                        <div style={{ marginTop: '50px'}}>
+                            <img src={lineBoleto}></img>
+                        </div>
                 : null
-                }
-                <Linha>
-                    <h3>valor Final {'$qntdingressos'}</h3>
-                </Linha>
-                {/* <ButtonAdd onClick={e => setOpen(true)}>
+            }
+            <Linha>
+                <h3>valor Final {'$qntdingressos'}</h3>
+            </Linha>
+            {/* <ButtonAdd onClick={e => setOpen(true)}>
                     Pagar
                 </ButtonAdd> */}
-                <Linha>
-                    <ButtonAdd style={{width:'250px', marginRight:'0px', marginLeft:'-80px'}}onClick={e => setOpen(true)}>
-                        Voltar
-                    </ButtonAdd>
-                    <ButtonAdd style={{width:'250px'}} onClick={e => setOpen(true)}>
-                        Pagar
-                    </ButtonAdd>
-                </Linha>
+            <Linha>
+                <ButtonAdd style={{ width: '250px', marginRight: '0px', marginLeft: '-80px' }} onClick={e => setOpen(true)}>
+                    Voltar
+                </ButtonAdd>
+                <ButtonAdd style={{ width: '250px' }} onClick={e => setOpen(true)}>
+                    Pagar
+                </ButtonAdd>
+            </Linha>
 
             <WrapModal
                 customStyles={customStyles}
