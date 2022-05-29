@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal/lib/components/Modal";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import http from "../../Services/httpRequest";
 import { Form, Linha, ButtonAdd, ModalInfo, Input } from "./style";
 import qrimg from '../../Assets/qrcode.jpg';
@@ -29,6 +29,8 @@ const Pagaringresso = () => {
         })();
       }, []);
     
+
+    const navigate = useNavigate();
 
     useEffect(() => { 
         (async () => {
@@ -189,17 +191,20 @@ const Pagaringresso = () => {
                     </div>
                 : tiposingressos === '2' ?
                         <div style={{ marginTop: '50px'}}>
-                            <img src={lineBoleto}></img>
+                            <img style={{width:'600px'}} src={lineBoleto}></img>
                         </div>
                 : null
             }
+            <Linha>
+                <h3>valor Final {'$qntdingressos'}</h3>
+            </Linha>
             <h2 style={{marginTop: '10px'}}>Quantidade de Ingressos: {ingresso.quantidade}</h2>
                 <h2>valor Final: {ingresso.valorFinal}</h2>
             {/* <ButtonAdd onClick={e => setOpen(true)}>
                     Pagar
                 </ButtonAdd> */}
             <Linha>
-                <ButtonAdd style={{ width: '250px', marginRight: '0px', marginLeft: '-80px' }} onClick={e => setOpen(true)}>
+                <ButtonAdd style={{ width: '250px', marginRight: '0px', marginLeft: '-80px' }} onClick={() => navigate(-1)}>
                     Voltar
                 </ButtonAdd>
                 <ButtonAdd style={{ width: '250px' }} onClick={RegisterUser}>

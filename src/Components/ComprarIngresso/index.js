@@ -106,7 +106,7 @@ const Compraringresso = () => {
         </Linha>
 
         <Linha>
-          <ButtonAdd style={{marginLeft:'-110px', width:'25vh'}} onClick={RegisterIngresso}>
+          <ButtonAdd style={{marginLeft:'-110px', width:'25vh'}} onClick={() => history(-1)}>
             Voltar
           </ButtonAdd>
           {qntdingressos > saberQuant ? <div> Sem Ingressos</div> : <ButtonAdd style={{width:'20vh'}} onClick={RegisterIngresso}>
