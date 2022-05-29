@@ -50,31 +50,32 @@ const Compraringresso = () => {
 
   const RegisterIngresso = () => {
 
-    const config = {
-      headers: { Authorization: `Bearer ${getToken()}` }
-    };
-    const body = {
-      tipoIngressoNumber: tiposingressos,
-      quantidade: qntdingressos,
-      valorFinal: valorFinal,
-      userID: getId(),
-      eventoID: evento._id,
+        const config = {
+            headers: { Authorization: `Bearer ${getToken()}` }
+          };
+        const body = {
+            tipoIngressoNumber: tiposingressos,
+            quantidade: qntdingressos,
+            valorFinal: valorFinal,
+            userID: getId(),
+            eventoID: evento._id,
+        }
+        console.log(body)
+            http
+            .post('/ingresso', body, config)
+            .then((res) => {
+                console.log(res.data.idIngresso);
+                console.log('go')
+                history(`/pay/${res.data.idIngresso}`);
+            })
+            .catch((err) => {
+                console.log(err.response)
+                //swal(err.response.data.message);
+
+            })
+        
     }
-    console.log(body)
-    http
-      .post('/ingresso', body, config)
-      .then((res) => {
-        console.log(res)
-        console.log('go')
-        //history('/pay');
-      })
-      .catch((err) => {
-        console.log(err.response)
-        //swal(err.response.data.message);
-
-      })
-
-  }
+  
 
   console.log(valorFinal, tiposingressos)
 

@@ -45,7 +45,7 @@ const R = () => {
            loading ? null : <Route path="/ingressos" element={!auth ? <Navigate to="/" />: <Ingressos /> } />
          }
           {
-          loading ? null : <Route path="/pay" element={!auth ? <Navigate to="/" /> : <Pagar />} />
+          loading ? null : <Route path="/pay/:id" element={!auth ? <Navigate to="/" /> : <Pagar />} />
         }
         </Routes>
       </Router>
