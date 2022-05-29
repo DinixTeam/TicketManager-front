@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal/lib/components/Modal";
+import { useParams } from "react-router-dom";
+import http from "../../Services/httpRequest";
 import { Form, Linha, ButtonAdd, ModalInfo, Input } from "./style";
 
 
@@ -7,15 +9,16 @@ import { Form, Linha, ButtonAdd, ModalInfo, Input } from "./style";
 const Pagaringresso = () => {
     const [tiposingressos, setEstado] = useState('');
     const [qntdingressos, setQuantidade] = useState(0);
-    // const [ingresso, setIngress] = useState([])
+    const { id } = useParams();
+    const [ingresso, setIngress] = useState([])
 
-    // useEffect(() => { 
-    //     (async () => {
-    //       const response = await http.get(`/readoneingresso/${idevento}`);
-    //       console.log(response.data);
-    //       setIngress(response.data);
-    //     })();
-    //   }, []);
+    useEffect(() => { 
+        (async () => {
+          const response = await http.get(`/readoneingresso/${id}`);
+          console.log(response.data);
+          setIngress(response.data);
+        })();
+      }, []);
 
 
     const customStyles = {

@@ -66,9 +66,9 @@ const Compraringresso = () => {
             http
             .post('/ingresso', body, config)
             .then((res) => {
-                console.log(res)
+                console.log(res.data.idIngresso);
                 console.log('go')
-                //history('/pay');
+                history(`/pay/${res.data.idIngresso}`);
             })
             .catch((err) => {
                 console.log(err.response)
