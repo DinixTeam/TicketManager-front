@@ -5,23 +5,25 @@ import styled from 'styled-components';
 export const Form = styled.div`
     grid-area: CS;
     display: flex;
+    overflow-y: scroll;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    /* width: 100%; */
-    /* min-height: 500px; */
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)), rgba(0, 8, 34, 0.6);
+    width: 50%;
+    min-height: 300px;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)), rgba(0, 8, 34, 0.6); 
     border-radius: 20px;
     opacity: 6;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin: auto;
     padding: 10px;
-    margin-top: 3%;
+    margin-top: 1%;
     color: white;
+    margin-bottom: 3%;
     
     
     h1 {
-        margin-top: 10px;
+        margin-top: 30px;
+        margin-bottom: 30px;
         font-size: 20px;
     }
 
@@ -81,7 +83,7 @@ export const Linha = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: 'space-between';
-    margin-bottom: '10px';
+    margin-bottom: 50px;
 `;
 
 export const ButtonAdd = styled.div`
@@ -102,7 +104,7 @@ export const ButtonAdd = styled.div`
     align-items: center;
     text-align: center;
     /* align-self: flex-end; */
-    width: 30%;
+    width: 35%;
     margin-right: 30%;
     cursor: pointer;
     :hover{

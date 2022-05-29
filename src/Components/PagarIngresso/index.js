@@ -38,10 +38,11 @@ const Pagaringresso = () => {
     const [openModal, setOpen] = useState(false);
 
     return (
-        <div>
+        <Form>
+            
                 <h1>Miauuuuuu</h1>
                 <h1>Time1 x Time2</h1>
-                <h3 style={{ marginBottom: '-45px', marginLeft: '-80px' }}>tipo de Pagamento</h3>
+                <h3 style={{ marginBottom: '5px', marginLeft: '-80px' }}>tipo de Pagamento</h3>
                 <select style={{ width: '15vw', backgroundColor: '#929490', borderRadius: '15px', height: '30px', border: 'none', paddingLeft: '8px' }}
                     name='sexos' value={tiposingressos} onChange={texto => setEstado(texto.target.value)
                     }>
@@ -51,7 +52,7 @@ const Pagaringresso = () => {
                     <option value="Pix">Pix</option>
                 </select>
                 {tiposingressos === 'Cc' ?
-                <div>
+                <div style={{marginTop: '50px'}}>
                     <Input>
                         <h2>Numero de cartão</h2>
                         <input
@@ -92,10 +93,10 @@ const Pagaringresso = () => {
                     Pagar
                 </ButtonAdd> */}
                 <Linha>
-                    <ButtonAdd style={{width:'190px', marginRight:'0px', marginLeft:'-80px'}}onClick={e => setOpen(true)}>
+                    <ButtonAdd style={{width:'250px', marginRight:'0px', marginLeft:'-80px'}}onClick={e => setOpen(true)}>
                         Voltar
                     </ButtonAdd>
-                    <ButtonAdd style={{width:'180px'}} onClick={e => setOpen(true)}>
+                    <ButtonAdd style={{width:'250px'}} onClick={e => setOpen(true)}>
                         Pagar
                     </ButtonAdd>
                 </Linha>
@@ -106,7 +107,7 @@ const Pagaringresso = () => {
                 //data={data}
                 setOpen={setOpen}
             />
-        </div>
+        </Form>
     );
 }
 
