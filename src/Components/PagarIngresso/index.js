@@ -121,8 +121,9 @@ const Pagaringresso = () => {
     return (
         <Form>
 
-            <h1>Miauuuuuu</h1>
+            {/* <h1>Miauuuuuu</h1> */}
             <h1>{evento.titulo}</h1>
+            <h2 style={{marginBottom: '10px', fontSize: '18px'}} >{evento.descricao}</h2>
             <h3 style={{ marginBottom: '5px', marginLeft: '-100px' }}>tipo de Pagamento</h3>
             <select style={{ width: '20vw', backgroundColor: '#929490', borderRadius: '15px', height: '30px', border: 'none', paddingLeft: '8px' }}
                 name='sexos' value={tiposingressos} onChange={texto => setEstado(texto.target.value)
@@ -195,9 +196,7 @@ const Pagaringresso = () => {
                         </div>
                 : null
             }
-            <Linha>
-                <h3>valor Final {'$qntdingressos'}</h3>
-            </Linha>
+            
             <h2 style={{marginTop: '10px'}}>Quantidade de Ingressos: {ingresso.quantidade}</h2>
                 <h2>valor Final: {ingresso.valorFinal}</h2>
             {/* <ButtonAdd onClick={e => setOpen(true)}>

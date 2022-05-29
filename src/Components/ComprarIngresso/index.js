@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import swal from "sweetalert";
 import { getId, getToken } from "../../Services/auth";
 import http from "../../Services/httpRequest";
 import { Form, Linha, ButtonAdd } from "./style";
 
 
 const Compraringresso = () => {
-  const [tiposingressos, setEstado] = useState(0);
-  const [qntdingressos, setQuantidade] = useState(0);
+  const [tiposingressos, setEstado] = useState('0');
+  const [qntdingressos, setQuantidade] = useState('0');
   const [evento, setEvento] = useState([])
   const { idevento } = useParams();
   var saberQuant;
@@ -23,7 +24,7 @@ const Compraringresso = () => {
   }, []);
 
 
-  var valorFinal;
+  var valorFinal = 0;
 
 
 
@@ -60,19 +61,25 @@ const Compraringresso = () => {
             userID: getId(),
             eventoID: evento._id,
         }
-        console.log(body)
-            http
-            .post('/ingresso', body, config)
-            .then((res) => {
-                console.log(res.data.idIngresso);
-                console.log('go')
-                history(`/pay/${evento._id}/${res.data.idIngresso}`);
-            })
-            .catch((err) => {
-                console.log(err.response)
-                //swal(err.response.data.message);
 
-            })
+        console.log(body)
+        if(body.quantidade !== '0' && body.tipoIngressoNumber !== '0'){
+          http
+          .post('/ingresso', body, config)
+          .then((res) => {
+              console.log(res.data.idIngresso);
+              console.log('go')
+              history(`/pay/${evento._id}/${res.data.idIngresso}`);
+          })
+          .catch((err) => {
+              console.log(err.response)
+              //swal(err.response.data.message);
+
+          })
+        }else{
+          swal('Escolha a quantidade e o tipo de ingresso')
+        }
+            
         
     }
   

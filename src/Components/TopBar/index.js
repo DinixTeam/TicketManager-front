@@ -11,35 +11,33 @@ const TopBar = () => {
     const { desloga } = useContext(Context);
     const [user, setUser] = useState([]);
     const history = useNavigate();
-
-    useEffect(() => {
+  
+    useEffect(() => { 
         (async () => {
-            const response = await http.get(`/user/${getId()}`);
-            console.log(response.data);
-            setUser(response.data);
+          const response = await http.get(`/user/${getId()}`);
+          console.log(response.data);
+          setUser(response.data);
         })();
-    }, []);
+      }, []);
 
-    console.log(user.username)
+      console.log(user.username)
 
-    const linkIngresso = () => {
+      const linkIngresso = () =>{
         history(`/ingressos`)
     }
 
     return (
         <Container>
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
-                <h2 style={{ color: "white", marginRight: '1200px', marginLeft: '0px' }}> {user.username} </h2>
-                {user.isCliente ?  <User onClick={linkIngresso}> <FontAwesomeIcon icon={faTicketAlt} /></User> : null}
-                {/* <User onClick={linkIngresso}>
-                     <FontAwesomeIcon icon={faTicketAlt} />
-                </User> */}
+                <h2 style={{ color: "white",  marginLeft: '30px' }}> {user.username} </h2>
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                <User onClick={linkIngresso}>
+                    <FontAwesomeIcon icon={faTicketAlt} />
+                </User>
                 <User onClick={desloga}>
                     <FontAwesomeIcon icon={faSignOutAlt} />
                 </User>
-            </div>
-
+                </div>
+               
         </Container>
     )
 }

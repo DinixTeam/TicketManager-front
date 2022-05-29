@@ -8,6 +8,8 @@ export const Container = styled.div`
     place-items: center;
     justify-content: end;
     position: initial;
+    flex-direction: row;
+    justify-content: space-between;
     width: 100%;
     height: 90px;
     h2 {
