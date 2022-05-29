@@ -66,7 +66,7 @@ const Compraringresso = () => {
             .then((res) => {
                 console.log(res.data.idIngresso);
                 console.log('go')
-                history(`/pay/${res.data.idIngresso}`);
+                history(`/pay/${evento._id}/${res.data.idIngresso}`);
             })
             .catch((err) => {
                 console.log(err.response)
