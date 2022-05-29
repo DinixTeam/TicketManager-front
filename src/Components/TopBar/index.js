@@ -2,13 +2,15 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../Context/contextAPI.js";
 import { Container, Image, User } from "./style";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTicketAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import http from "../../Services/httpRequest.js";
 import { getId } from "../../Services/auth.js";
+import { useNavigate } from "react-router-dom";
 const TopBar = () => {
 
     const { desloga } = useContext(Context);
     const [user, setUser] = useState([]);
+    const history = useNavigate();
   
     useEffect(() => { 
         (async () => {
@@ -20,12 +22,18 @@ const TopBar = () => {
 
       console.log(user.username)
 
+      const linkIngresso = () =>{
+        history(`/ingressos`)
+    }
 
     return (
         <Container>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
                 <h2 style={{ color: "white", marginRight: '1200px', marginLeft: '0px' }}> {user.username} </h2>
+                <User onClick={linkIngresso}>
+                    <FontAwesomeIcon icon={faTicketAlt} />
+                </User>
                 <User onClick={desloga}>
                     <FontAwesomeIcon icon={faSignOutAlt} />
                 </User>
