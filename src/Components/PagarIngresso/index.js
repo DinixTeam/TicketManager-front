@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal/lib/components/Modal";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import http from "../../Services/httpRequest";
 import { Form, Linha, ButtonAdd, ModalInfo, Input } from "./style";
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import qrimg from '../../Assets/qrcode.jpg';
 import lineBoleto from '../../Assets/lineBoleto.jpg';
 
@@ -15,6 +11,8 @@ const Pagaringresso = () => {
     const [qntdingressos, setQuantidade] = useState(0);
     const { id } = useParams();
     const [ingresso, setIngress] = useState([])
+
+    const navigate = useNavigate();
 
     useEffect(() => { 
         (async () => {
@@ -97,18 +95,15 @@ const Pagaringresso = () => {
                     </div>
                 : tiposingressos === 'Boleto' ?
                         <div style={{ marginTop: '50px'}}>
-                            <img src={lineBoleto}></img>
+                            <img style={{width:'600px'}} src={lineBoleto}></img>
                         </div>
                 : null
             }
             <Linha>
                 <h3>valor Final {'$qntdingressos'}</h3>
             </Linha>
-            {/* <ButtonAdd onClick={e => setOpen(true)}>
-                    Pagar
-                </ButtonAdd> */}
             <Linha>
-                <ButtonAdd style={{ width: '250px', marginRight: '0px', marginLeft: '-80px' }} onClick={e => setOpen(true)}>
+                <ButtonAdd style={{ width: '250px', marginRight: '0px', marginLeft: '-80px' }} onClick={() => navigate(-1)}>
                     Voltar
                 </ButtonAdd>
                 <ButtonAdd style={{ width: '250px' }} onClick={e => setOpen(true)}>

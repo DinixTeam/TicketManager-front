@@ -1,7 +1,10 @@
 import React from "react";
 import { Container, Ingresso, ButtonAdd } from "./style";
+import { useNavigate } from "react-router-dom";
 
 const IngressosClient = () => {
+
+    const navigate = useNavigate();
     return(
              <Container>
             <Ingresso>
@@ -10,7 +13,7 @@ const IngressosClient = () => {
             <Ingresso>
 
             </Ingresso>
-            <ButtonAdd style={{width:'250px', marginRight:'0px', marginLeft:'-25px'}}>
+            <ButtonAdd style={{width:'250px', marginRight:'0px', marginLeft:'-25px'}} onClick={() => navigate(-1)}>
                         Voltar
             </ButtonAdd>
         </Container>
