@@ -19,10 +19,8 @@ const HomeEvento = () => {
     useEffect(() => { 
         (async () => {
           const response = await http.get(`/readeventos`);
-          console.log(response.data);
           setEventos(response.data);
           const respo = await http.get(`/user/${getId()}`);
-          console.log(respo.data);
           setUser(respo.data);
         })();
       }, []);

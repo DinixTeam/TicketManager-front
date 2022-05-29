@@ -24,7 +24,6 @@ const Eventos = ({data}) => {
     useEffect(() => { 
         (async () => {
           const response = await http.get(`/user/${getId()}`);
-          console.log(response.data);
           setUser(response.data);
         })();
       }, []);

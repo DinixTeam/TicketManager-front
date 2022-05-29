@@ -24,6 +24,7 @@ export const Form = styled.div`
     
     h1 {
         margin-top: 10px;
+        margin-bottom: -50px;
         font-size: 20px;
     }
 

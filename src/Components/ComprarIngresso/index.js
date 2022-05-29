@@ -83,8 +83,8 @@ const Compraringresso = () => {
     return (
         <div>
             <Form>
-                <h1>{evento.local.localName}</h1>
                 <h1>{evento.titulo}</h1>
+                <h2 >{evento.descricao}</h2>
                 <h3 style={{ marginBottom: '-45px', marginLeft: '-80px' }}>tipo de ingresso</h3>
                 <select style={{ width: '15vw', backgroundColor: '#929490', borderRadius: '15px', height: '30px', border: 'none', paddingLeft: '8px' }}
                     name='sexos' value={tiposingressos} onChange={texto => setEstado(texto.target.value)
