@@ -23,8 +23,7 @@ export const Form = styled.div`
     
     h1 {
         margin-top: 30px;
-        margin-bottom: 30px;
-        font-size: 20px;
+        font-size: 23px;
     }
 
     h3 {
@@ -41,9 +40,10 @@ export const Image = styled.img`
 export const Button = styled.div`
     background: #70448B;
     border-radius: 10px;
-    padding: 10px;
+    padding: 30px;
     margin-bottom: 10px;
-    width: 50%;
+    //width: 50%;
+
     text-align: center;
     display: flex;
     border: 1px solid transparent;
@@ -91,7 +91,7 @@ export const ButtonAdd = styled.div`
     display: flex;
     /* position:fixed; */
     border: 1px solid transparent;
-    padding: 1px 5px;
+    padding: 10px 20px;
     margin-top: 10px;
     margin-left: 150px;
     background-color: #0E1E5B;

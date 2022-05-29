@@ -91,7 +91,7 @@ export const ButtonAdd = styled.div`
     display: flex;
     /* position:fixed; */
     border: 1px solid transparent;
-    padding: 1px 5px;
+    padding: 10px 10px;
     margin-top: 10px;
     margin-left: 150px;
     background-color: #0E1E5B;

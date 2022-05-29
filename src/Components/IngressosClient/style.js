@@ -9,18 +9,11 @@ export const Container = styled.div`
   //  border-radius: 10px;
 `;
 
-export const Ingresso = styled.div`
-    width: 80%;
-    height: 300px;
-    background-color: aliceblue;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-`;
+
 
 export const ButtonAdd = styled.div`
     display: flex;
-    /* position:fixed; */
+    position:fixed;
     border: 1px solid transparent;
     padding: 1px 5px;
     margin-top: 10px;
