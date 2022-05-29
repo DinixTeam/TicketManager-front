@@ -3,25 +3,29 @@ import { Context } from "../../Context/contextAPI.js";
 import { Container, Image, User } from "./style";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import http from "../../Services/httpRequest.js";
+import { getId } from "../../Services/auth.js";
 const TopBar = () => {
 
     const { desloga } = useContext(Context);
+    const [user, setUser] = useState([]);
+  
+    useEffect(() => { 
+        (async () => {
+          const response = await http.get(`/user/${getId()}`);
+          console.log(response.data);
+          setUser(response.data);
+        })();
+      }, []);
 
-    // const [medico, setMedico] = useState([]);
+      console.log(user.username)
 
-    // useEffect(() => {
-    //     (async () => {
-    //         const response = await http.get(`/pediatra/${getId()}`);
-    //         console.log(response.data);
-    //         setMedico(response.data);
-    //     })();
-    // }, []);
 
     return (
         <Container>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
-                <h2 style={{ color: "white", marginRight: '1200px', marginLeft: '0px' }}> opaaa </h2>
+                <h2 style={{ color: "white", marginRight: '1200px', marginLeft: '0px' }}> {user.username} </h2>
                 <User onClick={desloga}>
                     <FontAwesomeIcon icon={faSignOutAlt} />
                 </User>

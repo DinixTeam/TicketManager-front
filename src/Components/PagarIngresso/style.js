@@ -123,3 +123,70 @@ export const ButtonAdd = styled.div`
         font-size: 1.8vw;
     }
 `;
+
+export const ModalInfo = styled.div`
+  padding: 5%;
+  width: 50vw;
+  height: auto;
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  @media (max-width: 768px) {
+    width: 75vw;
+    display: flex;
+    flex-direction: column;
+    h1{
+      text-align: center;
+    }
+  }
+  @media (max-width: 400px) {
+    width: 80vw;
+    h1{
+      font-size: 25px;
+      text-align: center;
+    }
+  }
+  h1{
+      margin-bottom: 20px;
+  }
+  button {
+    justify-content: center;
+    background: var(--primary);
+    border-radius: 40px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding: 3.5px 10px;
+    width: 30%;
+    margin-top: 20px;
+    
+    font-family: var(--font-familyS);
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    /* identical to box height */
+    :hover{
+      border: 1px solid #006A58;
+      background: #006A58;
+      color: #FFF;
+      transition: all linear 0.3s;
+    }
+    @media (max-width: 1024px) {
+      width: auto;
+    }
+    @media (max-width: 768px){
+      font-size: 20px;
+    }
+    @media (max-width: 425px){
+      font-size: 18px;
+    }
+    @media (max-width: 320px){
+      font-size: 16px;
+    }
+    
+  }
+  
+`;

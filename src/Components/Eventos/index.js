@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Input, ModalInfo } from "./style";
 import bgImg from "../../Assets/uefa.png";
 import moment from 'moment';
@@ -13,11 +13,21 @@ import { useNavigate } from "react-router-dom";
 
 const Eventos = ({data}) => {
 
+    const [user, setUser] = useState([])
+
     const history = useNavigate();
 
     const linkEvento = () =>{
         history(`/buy/${data._id}`)
     }
+
+    useEffect(() => { 
+        (async () => {
+          const response = await http.get(`/user/${getId()}`);
+          console.log(response.data);
+          setUser(response.data);
+        })();
+      }, []);
 
     const customStyles = {
         overlay: {
@@ -60,35 +70,69 @@ const Eventos = ({data}) => {
     }
 
     return(
-        <Container backgroundImg={bgImg} onClick={linkEvento}>
-            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            <h1>
-                    {data.titulo}
-                </h1>
-                <div>
-                <h2 style={{color: 'white'}}>
-                    {data.local.localName}
-                </h2>
-                <h2 style={{fontSize: '10px', color: 'white'}}>{data.data}</h2>
-                </div>
-            </div>
-                <div style={{diplay: 'flex', flexDirection: 'row'}}>
-                     <div style={{color: 'white', marginBottom: '10px',
-                    }} onClick={deleteEvento}>
-                        <FontAwesomeIcon icon={faTrash} />
+        <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+            {user.isOrganizador ? <Container backgroundImg={bgImg}>
+                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                    <h1>
+                            {data.titulo}
+                        </h1>
+                        <div>
+                        <h2 style={{color: 'white'}}>
+                            {data.local.localName}
+                        </h2>
+                        <h2 style={{fontSize: '10px', color: 'white'}}>{data.data}</h2>
+                        </div>
                     </div>
-                    <div style={{color: 'white'}} onClick={e => setOpen(true)}>
-                        <FontAwesomeIcon icon={faEdit} />
-                    </div>
-                </div>
+                        <div style={{diplay: 'flex', flexDirection: 'row'}}>
+                            <div style={{color: 'white', marginBottom: '10px',
+                            }} onClick={deleteEvento}>
+                                <FontAwesomeIcon icon={faTrash} />
+                            </div>
+                            <div style={{color: 'white'}} onClick={e => setOpen(true)}>
+                                <FontAwesomeIcon icon={faEdit} />
+                            </div>
+                        </div>
 
-                <WrapModal
-                    customStyles={customStyles}
-                    openModal={openModal}
-                    data={data}
-                    setOpen={setOpen}
-                 />
-        </Container>
+                        <WrapModal
+                            customStyles={customStyles}
+                            openModal={openModal}
+                            data={data}
+                            setOpen={setOpen}
+                        />
+                </Container> : 
+                <Container backgroundImg={bgImg} onClick={linkEvento}>
+                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <h1>
+                        {data.titulo}
+                    </h1>
+                    <div>
+                    <h2 style={{color: 'white'}}>
+                        {data.local.localName}
+                    </h2>
+                    <h2 style={{fontSize: '10px', color: 'white'}}>{data.data}</h2>
+                    </div>
+                </div>
+                    {/* <div style={{diplay: 'flex', flexDirection: 'row'}}>
+                        <div style={{color: 'white', marginBottom: '10px',
+                        }} onClick={deleteEvento}>
+                            <FontAwesomeIcon icon={faTrash} />
+                        </div>
+                        <div style={{color: 'white'}} onClick={e => setOpen(true)}>
+                            <FontAwesomeIcon icon={faEdit} />
+                        </div>
+                    </div> */}
+
+                    <WrapModal
+                        customStyles={customStyles}
+                        openModal={openModal}
+                        data={data}
+                        setOpen={setOpen}
+                    />
+            </Container>
+            }
+        </div>
+     
+        
     )
 }
 
