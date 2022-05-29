@@ -79,10 +79,11 @@ export const Input = styled.div`
 `;
 
 export const Linha = styled.div`
-    width: 15vh;
+    width: 20vh;
     display: flex;
     flex-direction: row;
     justify-content: 'space-between';
+    margin-top: 20px;
     margin-bottom: 50px;
 `;
 
