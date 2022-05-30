@@ -166,7 +166,7 @@ const FormRegister = () => {
                     style={{ fontSize: '15px', marginBottom: '10px', cursor: 'pointer', fontWeight: 'bold' }}
                     onClick={linkCadastro}
                 >
-                    Não tenho Cadastro
+                    tenho Cadastro
                 </div>
                 <Button
                     onClick={RegisterUser}
