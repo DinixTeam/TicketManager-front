@@ -170,7 +170,7 @@ const FormRegister = () => {
                 </div>
                 <Button
                     onClick={RegisterUser}
-                >Entrar</Button>
+                >Criar</Button>
             </Form>
         </div>
     );

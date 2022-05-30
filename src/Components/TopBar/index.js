@@ -30,9 +30,12 @@ const TopBar = () => {
         <Container>
                 <h2 style={{ color: "white",  marginLeft: '30px' }}> {user.username} </h2>
                 <div style={{display: 'flex', flexDirection: 'row'}}>
-                <User onClick={linkIngresso}>
-                    <FontAwesomeIcon icon={faTicketAlt} />
-                </User>
+                {user.isCliente ?
+                    <User onClick={linkIngresso}>
+                        <FontAwesomeIcon icon={faTicketAlt} />
+                    </User>
+                    : null
+                }
                 <User onClick={desloga}>
                     <FontAwesomeIcon icon={faSignOutAlt} />
                 </User>
