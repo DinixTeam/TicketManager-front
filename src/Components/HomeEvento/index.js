@@ -8,7 +8,8 @@ import { Container } from "./style";
 const HomeEvento = () => {
 
     const [eventos, setEventos] = useState([]);
-    const [user, setUser] = useState([])
+    const [user, setUser] = useState([]);
+    const [eventoOrg, setEventoOrg] = useState([])
     const history = useNavigate();
 
     const linkAddEvento = () => {
@@ -25,15 +26,33 @@ const HomeEvento = () => {
         })();
       }, []);
 
+      useEffect(() => { 
+        (async () => {
+          const response = await http.get(`/readeventofromorganizador/${getId()}`);
+          setEventoOrg(response.data);
+        })();
+      }, []);
+
+
 
    
     return(
         <Container>
-            {eventos.map((item, index) => {
+            {user.isOrganizador ? <div style={{width: '100%'}}>
+                {eventoOrg.map((item, index) => {
                 return(
                     <Eventos data={item} key={index}/>
                 )
             })}
+            </div> : user.isCliente ?
+            <div style={{width: '100%'}}>
+                      {eventos.map((item, index) => {
+                return(
+                    <Eventos data={item} key={index}/>
+                )
+            })}
+                </div> : null}
+          
             {user.isOrganizador ?  <button onClick={linkAddEvento}>
                 Adicionar Evento
             </button> : null}
