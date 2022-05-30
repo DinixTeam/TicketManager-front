@@ -5,6 +5,7 @@ import http from "../../Services/httpRequest";
 import { getId, idUser, login, logout } from "../../Services/auth";
 import { Context } from "../../Context/contextAPI.js";
 import { useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
 
 const FormLogin = () => {
     const [userName, setUserName] = useState('');
@@ -41,12 +42,12 @@ const FormLogin = () => {
             })
             .catch((err) => {
                 console.log(err.response)
-               // swal(err.response.data.message);
+               swal(err.response.data.message);
 
             })
         } else {
             console.log('erro')
-          //  swal('Preencha todos os dados!');
+           swal('Preencha todos os dados!');
         }
     }
     return(

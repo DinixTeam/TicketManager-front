@@ -65,7 +65,7 @@ const FormRegister = () => {
     return (
         <div>
             <Form>
-                <h1 style={{ marginBottom: '10px' }}>Login</h1>
+                <h1 style={{ marginBottom: '10px' }}>Cadastro</h1>
                 <Input>
                     <h2>Email </h2>
                     <input
@@ -166,7 +166,7 @@ const FormRegister = () => {
                     style={{ fontSize: '15px', marginBottom: '10px', cursor: 'pointer', fontWeight: 'bold' }}
                     onClick={linkCadastro}
                 >
-                    Não tenho Cadastro
+                    tenho Cadastro
                 </div>
                 <Button
                     onClick={RegisterUser}

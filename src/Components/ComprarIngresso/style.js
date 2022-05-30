@@ -31,7 +31,7 @@ export const Form = styled.div`
     h3 {
         margin-top: 10px;
         font-size: 15px;
-        margin-left: -55px;
+        /* margin-left: -55px; */
     }
 `;
 

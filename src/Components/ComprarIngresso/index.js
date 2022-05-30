@@ -1,3 +1,4 @@
+import { width } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
@@ -54,7 +55,8 @@ const Compraringresso = () => {
         const config = {
             headers: { Authorization: `Bearer ${getToken()}` }
           };
-        const body = {
+
+          const body = {
             tipoIngressoNumber: tiposingressos,
             quantidade: qntdingressos,
             valorFinal: valorFinal,
@@ -82,7 +84,9 @@ const Compraringresso = () => {
             
         
     }
+
   
+
 
   console.log(valorFinal, tiposingressos)
 
@@ -102,6 +106,28 @@ const Compraringresso = () => {
           <option value={4}>Setor Oeste</option>
           <option value={5}>Setor Camarote</option>
         </select>
+        {tiposingressos === '1' ?
+          <Linha>
+            <h3 style={{marginTop: '-50px', marginBottom:'-20px', marginLeft:'-65px', marginRight:'-10px'}}>{saberQuant} ingressos disponiveis.</h3>
+          </Linha>
+          : tiposingressos === '2' ?
+            <Linha>
+              <h3 style={{marginTop: '-50px', marginLeft:'-65px', marginRight:'-10px'}}>{saberQuant} ingressos disponiveis.</h3>
+            </Linha>
+            : tiposingressos === '3' ?
+              <Linha>
+                <h3 style={{marginTop: '-50px', marginLeft:'-65px', marginRight:'-10px'}}>{saberQuant} ingressos disponiveis.</h3>
+              </Linha>
+              : tiposingressos === '4' ?
+                <Linha>
+                  <h3 style={{marginTop: '-50px', marginLeft:'-65px', marginRight:'-10px'}}>{saberQuant} ingressos disponiveis.</h3>
+                </Linha>
+                : tiposingressos === '5' ?
+                  <Linha>
+                    <h3 style={{marginTop: '-50px', marginLeft:'-65px', marginRight:'-10px'}}>{saberQuant} ingressos disponiveis.</h3>
+                  </Linha>
+                  : null
+        }
         <Linha>
           <h3>Quantidade</h3>
           <input type="number" value={qntdingressos} min="0" max="10" style={{ marginTop: '1px', height: '30px', width: '15vw', marginLeft: '50px', borderRadius: '15px', backgroundColor: '#929490', border: 'none', paddingLeft: '8px', paddingRight: '8px' }}
@@ -113,10 +139,10 @@ const Compraringresso = () => {
         </Linha>
 
         <Linha>
-          <ButtonAdd style={{marginLeft:'-110px', width:'25vh'}} onClick={() => history(-1)}>
+          <ButtonAdd style={{ marginLeft: '-110px', width: '25vh' }} onClick={() => history(-1)}>
             Voltar
           </ButtonAdd>
-          {qntdingressos > saberQuant ? <div> Sem Ingressos</div> : <ButtonAdd style={{width:'20vh'}} onClick={RegisterIngresso}>
+          {qntdingressos > saberQuant ? <div> Sem Ingressos</div> : <ButtonAdd style={{ width: '20vh' }} onClick={RegisterIngresso}>
             Comprar
           </ButtonAdd>}
         </Linha>
